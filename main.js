@@ -20,9 +20,10 @@ while (isRunning) {
     console.log("5. vote for your candidate");
     console.log("6. show the candidates")
     console.log("7. edit a candidate");
+    console.log("8. find a candidate")
 
 
-    let choice = Number(p("Enter a number between 0 and 7: "))
+    let choice = Number(p("Enter a number between 0 and 8: "))
 
     switch (choice) {
         case 1:
@@ -61,13 +62,17 @@ while (isRunning) {
             editCandidate(candidates)
             break
 
+        case 8:
+            findByName(candidates)
+            break;
+
         case 0:
             isRunning = false
             console.log("Quiting");
             break;
 
         default:
-            console.log("please enter a new number between 0 and 7");
+            console.log("please enter a new number between 0 and 8");
             break;
     }
 }
@@ -224,4 +229,24 @@ function editCandidate(candidates) {
     }
 
     console.log("Candidate updated successfully");
+}
+
+function findByName(candidates) {
+    let name = p("Enter the firstname or lastname to search: ");
+
+    let found = false;
+    for (let i = 0; i < candidates.length; i++) {
+        if (candidates[i].firstname === name || candidates[i].lastname === name) {
+            console.log("CIN            : " + candidates[i].CIN);
+            console.log("firstname      : " + candidates[i].firstname);
+            console.log("lastname       : " + candidates[i].lastname);
+            console.log("political party: " + candidates[i].political_party);
+            console.log("age            : " + candidates[i].age);
+            console.log("number of votes: " + candidates[i].voters.length);
+            found = true;
+        }
+    }
+    if (!found) {
+        console.log("No candidate found with that name.");
+    }
 }
