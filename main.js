@@ -19,9 +19,10 @@ while (isRunning) {
     console.log("4. show the candidates by political party");
     console.log("5. vote for your candidate");
     console.log("6. show the candidates")
+    console.log("7. edit a candidate");
 
 
-    let choice = Number(p("Enter a number between 0 and 6: "))
+    let choice = Number(p("Enter a number between 0 and 7: "))
 
     switch (choice) {
         case 1:
@@ -56,13 +57,17 @@ while (isRunning) {
             console.log(candidates)
             break;
 
+        case 7:
+            editCandidate(candidates)
+            break
+
         case 0:
             isRunning = false
             console.log("Quiting");
             break;
 
         default:
-            console.log("please enter a new number between 0 and 6");
+            console.log("please enter a new number between 0 and 7");
             break;
     }
 }
@@ -138,7 +143,7 @@ function showCandidates(candidates) {
 
     for (let i = 0; i < candidates.length; i++) {
         const candidate = candidates[i];
-        console.log(candidates[i])
+        //console.log(candidates[i])
         console.log("CIN            : " + candidate.CIN);
         console.log("firstname      : " + candidate.firstname);
         console.log("lastname       : " + candidate.lastname);
@@ -183,3 +188,40 @@ function vote(candidates) {
     candidate.voters.push(your_CIN)
 }
 
+function editCandidate(candidates) {
+    let CIN = p("enter the CIN of the candidate you want to edit: ");
+
+    let candidate;
+    for (let i = 0; i < candidates.length; i++) {
+        if (candidates[i].CIN === CIN) {
+            candidate = candidates[i];
+            break;
+        }
+    }
+
+    if (!candidate) {
+        console.log("candidate not found");
+        return;
+    }
+
+    console.log("Current party: " + candidate.political_party);
+    console.log("Current age  : " + candidate.age);
+
+    let newParty = p("enter new political party, leave empty to keep current: ");
+    let newAge = p("enter new age, leave empty to keep current: ");
+
+    if (newParty !== "") {
+        candidate.political_party = newParty;
+    }
+
+    if (newAge !== "") {
+        newAge = Number(newAge);
+        if (isNaN(newAge) || newAge < 21) {
+            console.log("Invalid value, Age not changed");
+        } else {
+            candidate.age = newAge;
+        }
+    }
+
+    console.log("Candidate updated successfully");
+}
