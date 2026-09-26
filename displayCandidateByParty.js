@@ -3,7 +3,7 @@ const p = promptSync();
 
 function showCandidates(candidates) {
     if (candidates.length === 0) {
-        console.log("No candidates to display");
+        console.log("No candidates to see");
         return;
     }
 
@@ -19,7 +19,7 @@ function showCandidates(candidates) {
 }
 
 export function display(candidates) {
-    let political_party = p("Enter the political party: ");
+    let political_party = p("enter the party name: ");
     let list =[];
     for (let i = 0; i < candidates.length; i++) {
         if (candidates[i].political_party === political_party) {

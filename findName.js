@@ -2,7 +2,7 @@ import promptSync from 'prompt-sync';
 const p = promptSync();
 
 export function findByName(candidates) {
-    let name = p("Enter the firstname or lastname to search for a candidate: ");
+    let name = p("enter the firstname or lastname to search for a candidate: ");
     let nameLower = name.toLowerCase
 
     let found = false;
