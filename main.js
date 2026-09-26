@@ -11,19 +11,19 @@ const candidates = [{
 
 let isRunning = true;
 
-while (isRunning){
+while (isRunning) {
     console.log("0. quit");
     console.log("1. add a new candidate");
     console.log("2. add multiple candidates");
-    console.log("3. show the candidates");
+    console.log("3. show the votes of each candidate");
     console.log("4. show the candidates by political party");
     console.log("5. vote for your candidate");
+    console.log("6. show the candidates")
 
 
+    let choice = Number(p("Enter a number between 0 and 6: "))
 
-    let choice = Number(p("Enter a number between 0 and 5: "))
-
-    switch(choice){
+    switch (choice) {
         case 1:
             addCandidate(candidates)
             console.log("Done");
@@ -31,8 +31,8 @@ while (isRunning){
 
         case 2:
             let number = Number(p("How many candidates?: "));
-            if(number <= 0 || isNaN(number)){
-                console.log("enter a positive number!!!");
+            if (number <= 0 || isNaN(number)) {
+                console.log("enter a positive number");
                 break;
             }
             for (let i = 0; i < number; i++) {
@@ -41,15 +41,19 @@ while (isRunning){
             break;
 
         case 3:
-            console.log(candidates);
+            showByVotes(candidates);
             break;
 
         case 4:
-            filter(candidates);
+            display(candidates);
             break;
 
         case 5:
             vote(candidates)
+            break;
+
+        case 6:
+            console.log(candidates)
             break;
 
         case 0:
@@ -58,12 +62,12 @@ while (isRunning){
             break;
 
         default:
-            console.log("please enter a new number between 0 and 5");
+            console.log("please enter a new number between 0 and 6");
             break;
     }
 }
 
-function addCandidate(candidates){
+function addCandidate(candidates) {
     let CIN = p("write your CIN: ");
     let firstname = p("enter your firstname: ");
     let lastname = p("enter your lastname: ")
@@ -81,7 +85,7 @@ function addCandidate(candidates){
     }
 
     let exists = false;
-    for (let i = 0; i < candidates.length; i++){
+    for (let i = 0; i < candidates.length; i++) {
         if (candidates[i].CIN === CIN) {
             exists = true;
             break;
@@ -93,7 +97,7 @@ function addCandidate(candidates){
     }
 
     const newCandidate = {
-        CIN : CIN,
+        CIN: CIN,
         firstname: firstname,
         lastname: lastname,
         political_party: political_party,
@@ -104,36 +108,78 @@ function addCandidate(candidates){
     candidates.push(newCandidate);
 }
 
-function filter(candidates){
-    let count  = 0
-    for (let i = 0; i < candidates.length; i++){
-        count = count + candidates[i].political_party
+function showByVotes(candidates) {
+    let sorted = [];
+    for (let i = 0; i < candidates.length; i++) {
+        sorted.push(candidates[i]);
     }
-    return `${candidates.political_party}: ${count}`
+
+    for (let i = 0; i < sorted.length; i++) {
+        for (let j = 0; j < sorted.length - 1; j++) {
+            if (sorted[j].voters.length < sorted[j + 1].voters.length) {
+                let temp = sorted[j];
+                sorted[j] = sorted[j + 1];
+                sorted[j + 1] = temp;
+            }
+        }
+    }
+
+    for (let i = 0; i < sorted.length; i++) {
+        console.log((i + 1) + ". " + sorted[i].firstname + " " + sorted[i].lastname + " (" + sorted[i].political_party
+            + ") - " + sorted[i].voters.length + " vote");
+    }
 }
 
-function vote(candidates){
+function showCandidates(candidates) {
+    if (candidates.length === 0) {
+        console.log("No candidates to display");
+        return;
+    }
+
+    for (let i = 0; i < candidates.length; i++) {
+        const candidate = candidates[i];
+        console.log(candidates[i])
+        console.log("CIN            : " + candidate.CIN);
+        console.log("firstname      : " + candidate.firstname);
+        console.log("lastname       : " + candidate.lastname);
+        console.log("political party: " + candidate.political_party);
+        console.log("age            : " + candidate.age);
+        console.log("number of votes: " + candidate.voters.length);
+    }
+}
+
+function display(candidates) {
+    let political_party = p("Enter the political party: ");
+    let list =[];
+    for (let i = 0; i < candidates.length; i++) {
+        if (candidates[i].political_party === political_party) {
+            list.push(candidates[i]);
+        }
+    }
+    showCandidates(list);
+}
+
+function vote(candidates) {
     let your_CIN = p("enter your CIN: ");
     let candidate_CIN = p("enter the CIN of your candidate: ")
 
     const candidate = candidates.find(candidate => candidate.CIN === candidate_CIN)
-
-    if(!candidate){
+    if (!candidate) {
         console.log("candidate not there");
     }
 
     let votedAlready = false
-
-    for (let i = 0; i < candidate.length; i++){
-        if (candidate.voters.includes(your_CIN)){
+    for (let i = 0; i < candidate.length; i++) {
+        if (candidate.voters.includes(your_CIN)) {
             votedAlready = true
             return;
         }
     }
-    if(votedAlready){
+    if (votedAlready) {
         console.log("you already voted");
         return;
     }
 
     candidate.voters.push(your_CIN)
 }
+
