@@ -3,7 +3,7 @@ const p = promptSync();
 
 function showCandidates(candidates) {
     if (candidates.length === 0) {
-        console.log("No candidates to see");
+        console.log("No candidates to show");
         return;
     }
 

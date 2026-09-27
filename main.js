@@ -1,9 +1,10 @@
-import {findByName} from './findName.js';
+import { findByName } from './findName.js';
 import {editCandidate} from  './editCandidate.js';
 import { vote } from './vote.js';
-import { display } from './displayCanByParty.js';
+import { display } from './displayCandidateByParty.js';
 import { showByVotes } from './displayByVotes.js';
 import { addCandidate } from './addCandidate.js';
+import { deleteCandidate } from './deleteCandidate.js';
 import promptSync from 'prompt-sync';
 
 const p = promptSync()
@@ -28,7 +29,9 @@ while (isRunning) {
     console.log("5. vote for your candidate");
     console.log("6. show the candidates")
     console.log("7. edit a candidate");
-    console.log("8. find a candidate")
+    console.log("8. find a candidate");
+    console.log("9. ddelete a candidate");
+    
 
 
     let choice = Number(p("Enter a number between 0 and 8: "))
@@ -48,31 +51,41 @@ while (isRunning) {
             for (let i = 0; i < number; i++) {
                 addCandidate(candidates);
             }
+            console.log("Done");
             break;
 
         case 3:
+            console.log("the results:");
             showByVotes(candidates);
             break;
 
         case 4:
+            console.log("the results:");
             display(candidates);
             break;
 
         case 5:
+            console.log("the results:");
             vote(candidates)
             break;
 
         case 6:
+            console.log("the results:");
             console.log(candidates)
             break;
 
         case 7:
+            console.log("start editing:");
             editCandidate(candidates)
             break
 
         case 8:
             findByName(candidates)
             break;
+
+        case 9:
+            deleteCandidate(candidates)
+            break;    
 
         case 0:
             isRunning = false
