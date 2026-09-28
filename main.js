@@ -30,11 +30,11 @@ while (isRunning) {
     console.log("6. show the candidates")
     console.log("7. edit a candidate");
     console.log("8. find a candidate");
-    console.log("9. ddelete a candidate");
+    console.log("9. delete a candidate");
     
 
 
-    let choice = Number(p("Enter a number between 0 and 8: "))
+    let choice = Number(p("Enter a number between 0 and 9: "))
 
     switch (choice) {
         case 1:
@@ -55,17 +55,14 @@ while (isRunning) {
             break;
 
         case 3:
-            console.log("the results:");
             showByVotes(candidates);
             break;
 
         case 4:
-            console.log("the results:");
             display(candidates);
             break;
 
         case 5:
-            console.log("the results:");
             vote(candidates)
             break;
 
@@ -93,7 +90,7 @@ while (isRunning) {
             break;
 
         default:
-            console.log("please enter a new number between 0 and 8");
+            console.log("please enter a new number between 0 and 9");
             break;
     }
 }

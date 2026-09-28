@@ -2,11 +2,11 @@ import promptSync from 'prompt-sync';
 const p = promptSync();
 
 export function addCandidate(candidates) {
-    let CIN = p("write your CIN: ");
-    let firstname = p("enter your firstname: ");
-    let lastname = p("enter your lastname: ")
-    let political_party = p("enter your political party: ")
-    let age = Number(p("enter your age: "))
+    let CIN = p("write your CIN: ").trim();
+    let firstname = p("enter your firstname: ").trim();
+    let lastname = p("enter your lastname: ").trim()
+    let political_party = p("enter your political party: ").trim()
+    let age = Number(p("enter your age: ")).trim()
 
     if (!CIN || !firstname || !lastname || !political_party || isNaN(age)) {
         console.log("please fill in all the fields, note that age should be a positive number");

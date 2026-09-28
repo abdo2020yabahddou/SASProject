@@ -2,7 +2,7 @@ import promptSync from 'prompt-sync';
 const p = promptSync();
 
 export function deleteCandidate(candidates) {
-    let CIN = p("Enter the CIN of the candidate to delete: ");
+    let CIN = p("Enter the CIN of the candidate to delete: ").trim();
 
     let index = -1;
     for (let i = 0; i < candidates.length; i++) {

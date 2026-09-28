@@ -7,6 +7,7 @@ function showCandidates(candidates) {
         return;
     }
 
+    console.log("the results:");
     for (let i = 0; i < candidates.length; i++) {
         const candidate = candidates[i];
         console.log("CIN            : " + candidate.CIN);
@@ -19,10 +20,10 @@ function showCandidates(candidates) {
 }
 
 export function display(candidates) {
-    let political_party = p("enter the party name: ");
+    let political_party = p("enter the party name: ").trim();
     let list =[];
     for (let i = 0; i < candidates.length; i++) {
-        if (candidates[i].political_party === political_party) {
+        if (candidates[i].political_party.toLowerCase() === political_party.toLowerCase()) {
             list.push(candidates[i]);
         }
     }

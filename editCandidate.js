@@ -2,7 +2,7 @@ import promptSync from 'prompt-sync';
 const p = promptSync();
 
 export function editCandidate(candidates) {
-    let CIN = p("enter the CIN of the candidate you want to edit: ");
+    let CIN = p("enter the CIN of the candidate you want to edit: ").trim();
 
     let candidate;
     for (let i = 0; i < candidates.length; i++) {
@@ -20,8 +20,8 @@ export function editCandidate(candidates) {
     console.log("Current party: " + candidate.political_party);
     console.log("Current age  : " + candidate.age);
 
-    let newParty = p("enter new political party, leave empty to keep current: ");
-    let newAge = p("enter new age, leave empty to keep current: ");
+    let newParty = p("enter new political party, leave empty to keep current: ").trim();
+    let newAge = p("enter new age, leave empty to keep current: ").trim();
 
     if (newParty !== "") {
         candidate.political_party = newParty;
