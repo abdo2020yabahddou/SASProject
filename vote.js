@@ -3,7 +3,7 @@ const p = promptSync();
 
 export function vote(candidates) {
     let your_CIN = p("enter your CIN: ").trim();
-    let age = Number(p("enter your age: ")).trim()
+    let age = Number(p("enter your age: "))
     let candidate_CIN = p("enter the CIN of your candidate: ").trim()
 
     const candidate = candidates.find(candidate => candidate.CIN === candidate_CIN)
@@ -17,7 +17,7 @@ export function vote(candidates) {
             return;
     }
   
-    if( isNaN(age) < 18){
+    if( isNaN(age) || age < 18){
         console.log("sorry you can't vote, next time");
         return;
     }

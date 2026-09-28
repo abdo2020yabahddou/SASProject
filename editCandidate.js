@@ -21,7 +21,7 @@ export function editCandidate(candidates) {
     console.log("Current age  : " + candidate.age);
 
     let newParty = p("enter new political party, leave empty to keep current: ").trim();
-    let newAge = p("enter new age, leave empty to keep current: ").trim();
+    let newAge = p("enter new age, leave empty to keep current: ");
 
     if (newParty !== "") {
         candidate.political_party = newParty;

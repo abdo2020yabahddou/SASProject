@@ -9,14 +9,11 @@ import promptSync from 'prompt-sync';
 
 const p = promptSync()
 
-const candidates = [{
-    CIN: "PA124732",
-    firstname: "Ahmed",
-    lastname: "katir",
-    political_party: "PAM",
-    age: 45,
-    voters: []
-}]
+const candidates = [
+    { CIN: "PA124732",firstname: "Ahmed",lastname: "katir",political_party: "PAM",age: 45,voters: ["PA983417", "PA561234"]},
+    { CIN: "IU784512",firstname: "Salma",lastname: "Salmi",political_party: "PJD",age: 38,voters: ["IU673212"]},
+    { CIN: "DO564732",firstname: "Soad",lastname: "khilan",political_party: "PAM",age: 56,voters: ["DO564732"]}
+]
 
 let isRunning = true;
 

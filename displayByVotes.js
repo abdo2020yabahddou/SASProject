@@ -19,7 +19,7 @@ export function showByVotes(candidates) {
 
     console.log("the results:");
     for (let i = 0; i < sorted.length; i++) {
-        console.log((i + 1) + "- " + sorted[i].firstname + " " + sorted[i].lastname +
-         " (" + sorted[i].political_party + ") - " + sorted[i].voters.length + " vote");
+        console.log((i + 1) + "- " + sorted[i].firstname + " " + sorted[i].lastname + " (" + sorted[i].political_party + ") - "
+        + sorted[i].voters.length + " " + (sorted[i].voters.length === 1 ? "vote" : "votes"));
     }
 }
